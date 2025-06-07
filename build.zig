@@ -9,5 +9,8 @@ pub fn build(b: *std.Build) void {
 
     exe.linkLibC();
 
+    exe.linkSystemLibrary("glfw");
+    exe.linkSystemLibrary("vulkan");
+
     b.installArtifact(exe);
 }

@@ -1,9 +1,10 @@
 const std = @import("std");
 
-const vk = @cImport({
-    @cInclude("vulkan/vulkan.h");
-});
+const app = @import("app.zig");
 
 pub fn main() !void {
-    std.debug.print("VK_SUCCESS = {}\n", .{vk.VK_SUCCESS});
+    var allocator = std.heap.page_allocator;
+    var main_app = app.App.new("vk-zig", 800, 600, &allocator);
+
+    try main_app.run();
 }
